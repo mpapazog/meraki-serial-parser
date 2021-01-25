@@ -9,12 +9,12 @@
 </head>
 <body>
     <div id="divPageWrapper" class="page-wrapper">
-        <h1>Meraki device serial number parser</h1>
+        <h1>Meraki serial number parser</h1>
         
         <table>
             
             <tr><td>
-            Paste text containing Meraki device serial numbers here:
+            Paste text containing Meraki serial numbers here:
             </td></tr>
             
             <tr><td>
@@ -28,7 +28,15 @@
                             <div id="divOutput" class="text-panel"></div>
                         </div>
                     </td></tr>
-                    <tr><td>
+                    <tr><td>                        
+                        <table><tr>
+                            <td><input type="checkbox" id="checkBoxDevices" checked></td>
+                            <td>Devices</td>
+                            <td><div class="spacer-horizontal"></div></td>
+                            <td><input type="checkbox" id="checkBoxLicenses"></td>
+                            <td>Licenses</td>
+                        </tr></table>
+                    </td></tr><td>
                         <button type="button" onclick="process();">Parse</button>
                     </td><td>
                         <button type="button" onclick="copyToClipboard();">Copy to clipboard</button>

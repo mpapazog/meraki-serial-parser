@@ -1,4 +1,6 @@
 function parseSerials(rawText) {
+    var includeDevices = document.getElementById("checkBoxDevices").checked;
+    var includeLicenses = document.getElementById("checkBoxLicenses").checked;
     const regexpMerakiSerial = /\w{4}-\w{4}-\w{4}/g;  
     var result = rawText.match(regexpMerakiSerial);
     
@@ -8,7 +10,10 @@ function parseSerials(rawText) {
     
     var serials = [];
     for (i=0;i<result.length;i++){
-        serials.push(result[i].toUpperCase());
+        var sn = result[i].toUpperCase();
+        if ( ((sn[0] == "Q") && includeDevices) || ((sn[0] == "Z") && includeLicenses) ) {
+            serials.push(sn);
+        }
     }
     
     return serials;
@@ -40,6 +45,7 @@ function process() {
     }
     else {
         log("Found " + serials.length.toString() + " serial number" + (serials.length == 1 ? "" : "s"))
+        output.innerHTML = "";
         for (i=0;i<serials.length;i++) {
             var textNode    = document.createTextNode(serials[i]);
             var lineBreak   = document.createElement("br");
